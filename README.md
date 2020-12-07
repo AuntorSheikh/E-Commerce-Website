@@ -22,7 +22,7 @@ Main features:
 
 Operating system: Any
 
-How to use: Visit http://www.riaura.xyz with your browser.
+How to use: Visit https://arksss.com/ with your browser.
 
 Written in: html, javascript, jquery, css, php
 
