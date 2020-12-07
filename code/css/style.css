@@ -1,0 +1,88 @@
+.mainSelector{
+  background-image: url(../images/bro.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.head{
+    padding: 10px 0px;
+}
+.head1{
+    padding: 20px 0px;
+}
+.footer{
+    padding: 30px 0px;
+}
+
+.header_top {
+	display: block;
+    background: none repeat scroll 0 0 #F0F0E9;
+}
+.top_btn {
+  background-color: lightslategray;
+  border: none;
+  color: white;
+  padding: 7px 11px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* Darker background on mouse-over */
+.top_btn:hover {
+  background-color: rosybrown;
+}
+.middle_header:hover{
+	background-color: lightslategray;
+}
+.info ul li{
+	color: white;
+  	padding: 7px 11px;
+  	font-size: 16px;
+}
+.map{
+    padding: 30px 0px;
+}
+.deming{
+	margin-right: -5px;
+}
+@media only screen and (max-width: 414px) {
+  .top_respon{
+    border-bottom: 5px solid #fff;
+  }
+  .top_social_search{
+    display: none;
+  }
+  .navbar-brand{
+    width: 50px;
+  }
+  .textArea{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .top_social_search{
+    display: none;
+  }
+   .navbar-brand{
+    width: 50px;
+  }
+  .textArea{
+    width: 100%;
+  }
+  .imgBox img{
+    width: 100%
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
