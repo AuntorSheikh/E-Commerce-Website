@@ -74,9 +74,8 @@
 				<div class="col-md-6">
 					<div class="info">
 						<ul class="nav nav-pills">
-							<li><a href="" class="text-white"><i class="fa fa-phone"></i> Auntor shek</a></li>
-							<li><a href="" class="text-white"><i class="fa fa-phone"></i> Rituporna roy mitu</a></li>
-              <li><a href="" class="text-white"><i class="fa fa-phone"></i> Sharbon</a></li>
+							<li><a href="" class="text-white"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+							<li><a href="" class="text-white"><i class="fa fa-envelope"></i> info@domain.com</a></li>
 						</ul>
 					</div>
 					
@@ -99,6 +98,7 @@ function check($Menu){
   $row = mysqli_fetch_array($men);
   echo $row['count'];
 }
+
  ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -119,7 +119,16 @@ function check($Menu){
        }
       });
      }
-  
+
+    function wishlistCount(){
+      $.get("ajax/wishlistProductCount.php",function(data){
+          console.log(data);
+          $('#wishing').text(data);
+      }).fail(function(){
+          console.log( "error");
+      });
+    }
+    wishlistCount();
     $('#search_text').keyup(function(){
       var txt = $(this).val();
       if (txt != '') {
@@ -128,21 +137,35 @@ function check($Menu){
         load_data();
       }
     });
+    $(document).on('click','.addToWishlist',function(){
+      var getid = $(this).attr('id');
+      var ssid = $('#ssid').text();
+      $.ajax({
+        url:"ajax/add_wishlist.php",
+        method:"POST",
+        data:{getid:getid,ssid:ssid},
+        success:function(data)
+        {
+          alert(data);
+          wishlistCount();
+        }
+      });
+    });
     $('#carting').text('<?php check($Menu); ?>');
     $(document).on('click','.addTocart',function(){
       var getid = $(this).attr('id');
       var ssid = $('#ssid').text();
       var carttext = parseInt($('#carting').text());
       $.ajax({
-       url:"ajax/add_cart.php",
-       method:"POST",
-       data:{getid:getid,ssid:ssid},
-       success:function(data)
-       {
-        alert(data);
-        carttext ++;
-        $('#carting').text(carttext);
-       }
+        url:"ajax/add_cart.php",
+        method:"POST",
+        data:{getid:getid,ssid:ssid},
+        success:function(data)
+        {
+          alert(data);
+          carttext ++;
+          $('#carting').text(carttext);
+        }
       });
       
     });
