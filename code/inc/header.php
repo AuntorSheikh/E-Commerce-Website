@@ -7,8 +7,9 @@ ob_start();
      spl_autoload_register(function ($class) {
      include 'classes/' . $class . '.php';
     });
-     $ssid = session_id();
+  $ssid = session_id();
   $Menu = new Menu();
+  $wish = new Wishlist();
 //  ?>
 <!DOCTYPE html>
 <html>
@@ -36,12 +37,11 @@ ob_start();
         <div class="collapse navbar-collapse" id="menu">
            <span class="mr-auto"></span>
             <ul class="navbar-nav">
+              <li class="nav-item middle_header pr-3" style="border: 1px solid grey;"><a href="wishlist.php" class="nav-link text-light"><i class="fa fa-heart" aria-hidden="true"></i> Wishlist(<span class="text-danger" id="wishing">0</span>)</a></li>
                 <li class="nav-item middle_header pr-3" style="border: 1px solid grey;">
                     <a href="cart.php" class="nav-link text-light"><span class="fa fa-cart"></span> Cart(<span class="text-danger" id="carting">0</span>)</a>
                 </li>
                 <li class="nav-item active middle_header" style="border: 1px solid grey;">
-                    
-                </li>
     <?php 
 
      if (isset($_GET['cid'])) {
@@ -57,9 +57,9 @@ ob_start();
                    $login = Session::get('cuslogin');
                    $dd = Session::get('cmrId');
                     if (!$login) {
-                        echo '<a href="login.php" class="nav-link text-light"><span class="glyphicon glyphicon-home"></span> Login</a>';
+                        echo '<a href="login.php" class="nav-link text-light"><span class="glyphicon glyphicon-home"></span> Login</a></li>';
                     }else{
-                        echo '<a href="?cid=<?php echo $dd; ?>" class="nav-link text-light"><span class="glyphicon glyphicon-home"></span> Logout</a>';
+                        echo '<a href="?cid=<?php echo $dd; ?>" class="nav-link text-light"><span class="glyphicon glyphicon-home"></span> Logout</a></li>';
                     }
                 ?>
             </ul>
