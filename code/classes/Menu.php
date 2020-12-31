@@ -3,14 +3,18 @@
  $filepath = realpath(dirname(__FILE__));
  include_once ($filepath.'/../lib/Database.php');
  include_once ($filepath.'/../helpers/Format.php');
+ include_once ('Wishlist.php');
+
 class Menu
 {
 	private $db;
 	private $fm;
+	private $wishlist;
 
 	function __construct(){
 		$this->db = new Database();
 		$this->fm = new Format();
+		$this->wishlist = new Wishlist();
 	}
 	function getAllCartItemBySsid($ssid){ //retrieve all cart product by id
 		$sql ='SELECT * FROM tbl_cart WHERE ssid="'.$ssid.'"';
@@ -61,6 +65,7 @@ class Menu
 		}
 		return $msg;
 	}
+
 	public function delCustomerCart($ssid){
 		$qry = "DELETE FROM tbl_cart WHERE ssid = '$ssid'";
 		$deldata = $this->db->delete($qry);
@@ -108,7 +113,9 @@ class Menu
 		 			Session::set('cmrname',$value['cus_name']);
 		 			$this->addingProInUser(Session::get('cmrId'));
 		 			$this->delCustomerCart($ssid);
-		 			header("Location: cart.php");
+		 			$this->wishlist->addingProAftrDelete(Session::get('cmrId'),$ssid);
+		 			$this->wishlist->deleteWishlist($ssid);
+		 			header("Location: index.php");
 		 		}else{
 		 			$loginmsg = "<span class='text-danger'>Username And Password Not Match !</span>";
 		 		}
